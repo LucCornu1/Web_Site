@@ -9,29 +9,21 @@ h1{color: red; font-size: 305%; font-family: "MaPolice", Calibri, Serif; text-de
 h2{color: red;font-size: 215%; font-family: "MaPolice", Calibri, Serif; text-decoration: underline;}
 
 div{
-	width: 50%;
+	width: 5%;
+	border: solid;
+	border-color: grey;
+}
+
+img{
+ max-width: 10%;
+}
+
+#Conteneur{
+	width: 100%;
+	height: 150px;
+	background-color: #1D2C7D;
 	display: flex;
-    flex-direction: row;
-}
-
-.divInside{
-	border: solid;
-	border-color: lime;
-	width: 50%;
-}
-
-.hidden{
-	border: solid;
-	border-color: lime;
-	width: 50%;
-}
-
-.pair{
-	background-color: red;
-}
-
-.impair{
-	background-color: blue;
+	flex-direction: row;
 }
 
 .text, p, li{

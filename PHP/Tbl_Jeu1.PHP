@@ -26,6 +26,8 @@
 
 				var genre = ["genre1", "genre2", "genre3", "genre4"];
 
+				console.log(typeof(jeux));
+
 				rangeI = 4;
 
 				for (var i = 0; i < rangeI; i++) {
@@ -74,9 +76,33 @@
 
 			document.write("<p>Lorem Elsass ipsum Mauris sit merci vielmols gal Yo dû. ftomi! tristique geht's Coopé de Truchtersheim lotto-owe dui leverwurscht purus Gal ! Pfourtz ! yeuh. <span onmouseover='over(this)' onmouseout='out(this)'>réchime Oberschaeffolsheim suspendisse ac libero. hopla varius Kabinetpapier kuglopf Racing. Oberschaeffolsheim tchao bissame Pellentesque hoplageiss baeckeoffe porta mamsell munster so senectus kartoffelsalad lacus rossbolla Hans messti de Bischheim Richard Schirmeck libero, vulputate nüdle dolor mollis Chulien auctor, sit DNA, pellentesque quam, Miss Dahlias nullam Carola sed Wurschtsalad jetz gehts los tellus ullamcorper wurscht s'guelt kougelhopf habitant Morbi knepfle salu chambon picon bière Strasbourg risus, rucksack sit hopla barapli id hop commodo in, sagittis schnaps und Chulia Roberstau flammekueche geïz non leo aliquam turpis, bredele Verdammi blottkopf, gravida dignissim eleifend Christkindelsmärik et amet semper wie ch'ai amet, météor bissame elementum adipiscing sed consectetur non quam.</span> Salu bissame ornare schneck ante Gal. ac hopla rhoncus leo Spätzle eget Heineken id, libero, condimentum elit Salut bisamme  morbi ornare schpeck hopla turpis mänele amet knack tellus placerat vielmols, Huguette gewurztraminer</p>");
 
-			document.write("</br><input type='checkbox' id='check1' onchange='change()'>");
-
 		</script>
+
+
+		<h2 id='mContenu1'>111111111111</h2>
+
+		<h2 id='mContenu2'>222222222222</h2>
+
+		<h3 id='Contenu1'>Lorem Elsass ipsum Mauris sit merci vielmols gal Yo dû. ftomi!</h3>
+
+		<h3 id='Contenu2'>Salu bissame ornare schneck ante Gal.</h3>
+
+
+		<script type="text/javascript">
+			function Afficher(event)
+			{
+				console.log(event);
+			}
+
+			function init()
+			{
+				var X = document.querySelectorAll('h2[id]');
+				for (var i = 0; i < X.length; i++) {
+                   X[i].addEventListener("mouseover", Afficher(event));
+                }
+			}
+		</script>
+
 
 		<footer>
 			<p>Nous somme le :</p>

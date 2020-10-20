@@ -24,6 +24,8 @@
 
 				var genre = ["genre1", "genre2", "genre3", "genre4"];
 
+				console.log(typeof jeux);
+
 				rangeI = 4;
 
 				for (var i = 0; i < rangeI; i++) {

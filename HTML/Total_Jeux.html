@@ -1,0 +1,134 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/SelectImages.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="../Images/Img2.jpg">
+		<script type="text/javascript" src="">
+			
+		</script>
+		<title>
+			Selection de jeux
+		</title>
+	</head>
+
+	<body>
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1>Selection de jeux</h1>
+
+		<script type="text/javascript">
+			let game = ["Warhammer 40k - Mechanicus", "XCOM 2", "Eco"];
+			let price = [4.99, 59.99, 14.99];
+
+			function init()
+			//Fonction qui créer le conteneur des images
+			{
+				let X=document.getElementById("images");
+				document.write("<div id='Conteneur'>");
+
+				for (let i = 0; i < X.length; i++)
+				{
+					let Chaine = "Img"+(i+1);
+					document.write("<img id='"+Chaine+"' src='../Images/Jeux/"+Chaine+".jpg' style='visibility: hidden;'>");
+				}
+				document.write("</div>");
+			}
+
+			function reset()
+			//Fonction qui fait disparaître les images quand on appuie sur le bouton reset
+			{
+				let X=document.getElementById("images");
+				for (let i = 0; i < X.length; i++)
+				{
+					let Chaine = "Img"+(i+1);
+					document.getElementById(Chaine).style.visibility = 'hidden';
+				}
+
+				sum = 0;
+				document.getElementById("prix").innerHTML = sum;
+			}
+
+
+			function prix(X)
+			{
+				let sum = 0;
+				let name = "";
+
+				for (let i = 0; i < X.length; i++)
+				{
+					option = X[i];
+					if (option.selected)
+					{
+						name = name + " " + game[i];
+						sum = sum + parseFloat(option.value);
+					}
+				}
+
+				document.getElementById("game").innerHTML = name;
+				document.getElementById("prix").innerHTML = sum;
+			}
+
+			function change(X)
+			//Fonction qui fait apparaître ou disparaître les images quand on les sélectionne dans la liste déroulante
+			{
+				//let Chaine = X.value;
+
+				for (let i = 0; i < X.length; i++)
+				{
+					option = X[i];
+					let Str = "Img"+(i+1);
+
+					if (option.selected)
+					{
+						document.getElementById(Str).style.visibility = 'visible';
+					}else{
+						document.getElementById(Str).style.visibility = 'hidden';
+					}
+				}
+
+				prix(X);
+			}
+
+			function select()
+			//Fonction qui affiche le sélecteur
+			{
+				document.write("<select name='images' id='images' onchange='change(this)' multiple>");
+				for (let i = 0; i < 3; i++)
+				{
+					document.write("<option value='"+price[i]+"'>"+game[i]+"</option>");
+				}
+				document.write("</select>");
+			}
+
+			document.write("<p>Veuillez sélectionner les jeux à afficher</p>")
+
+			select();
+
+			init();
+
+			document.write("<br><p>Le prix de</p> <div id='game'>???</div> <p>est de :</p> <div id='prix'>0</div>");
+
+		</script>
+
+		<br>
+		<button type="button" onclick="reset()">Reset</button>
+
+		<br>
+
+		<footer>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>
