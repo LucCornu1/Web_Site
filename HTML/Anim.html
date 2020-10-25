@@ -1,0 +1,331 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/SelectImages.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="../Images/Img2.jpg">
+		<script type="text/javascript" src="">
+			
+		</script>
+		<title>
+			Animation
+		</title>
+	</head>
+
+	<body>
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1>Carré qui bouge</h1>
+
+		<DIV id="cadre" style="border: solid; border-width: 10px; width: 90px; height: 90px; background-color: red;">
+				<p id="Par1" class="test" style="font-style: italic">
+					Paragraphe contenu dans le cadre.
+				</p>
+
+			</DIV>
+
+			<style type="text/css">
+				.test{text-color: blue;}
+			</style>
+
+				La bordure du cadre est un attribut de la balise.
+
+			<script type="text/javascript">
+				
+				//DOM = Document Objet Model
+
+				function init()
+				{
+					document.title = "JS_DOM";
+				}
+
+				var contour = document.getElementById("cadre");
+
+				console.log(contour);
+
+				console.log(typeof contour);
+
+				var par = document.querySelectorAll('#cadre > p');
+
+				console.log(par);	//Récupération du paragraphe et de toute ces propriétés sous forme de 'Nodelist'
+
+				var  par2 = document.getElementsByTagName('p');
+
+				console.log(par2);	//Affiche une "Collection" et pas une Nodelist
+
+				Array.isArray(par2);
+
+				console.log(Array.isArray(par2));
+
+				console.table(par2);
+
+				console.log(par2.length);
+
+				//console.log(par.
+
+				var x = document.querySelector('.test ');
+
+				console.log(x);
+
+				var idPar = document.querySelectorAll('#Par1');		//Récupération d'un noued par style d'identifiant
+
+				console.log(idPar);
+
+				//console.log(idPar.innerHTML);			//Non fonctionnel
+				
+				console.log(idPar[0].innerHTML);		//Permet de récupérer le contenus du cadre en se basant sur la première case de la nodelist
+
+
+				function epaissis()
+				{
+					contour.style.borderWidth ='50px';
+					console.log('ui');
+				}
+
+				//document.getElementById(Button2.onclick=function(){contour.style.borderwidth = '20px';});
+
+				//document.getElementById(Button3.addEventListener(onclick=function(){contour.style.borderwidth = '20px';));
+
+				//Les éléments enfants aux même niveau dans l'arborescence sont appelés des "Siblings", title = enfant de "head", en parcourant on tombe d'abord sur un noeud. (Title est un noeud texte) et innserHTML permet de récupérer la valeur d'un noeud "text"
+				//Le sibling d'un "h1" par exemple (les noeuds indiques le prochains sibling) Les noeud d'un "a" sont "text et son attriut "href" par exemple
+				//Noeud au top: root, Noeud inferieur ne peuvent avoir plusieurs parents
+				//Un DIV qui contient plusieurs paragraphes contient un child nod (first child, last child, etc.)
+
+				/*<title od="demo">DOM</title>
+
+				var myTitle = document.getElementById("demo").innerHTML;	Il y'a nod value et nod type.
+					nodvalue du 1e enfant du noeud
+				var myTitle = document.getElementById("demo").firstChild.nodeValue;
+					equivalent de :
+				var myTitle = document.getElementById("demo").childnodes[0].nodeValue;*/
+
+				//TEST
+
+				/*Pour ajouter un élément auDOM, il faut d'abord créer, puis ajouter au parent.
+				Ne pas oublier que le texte est un textNode.
+
+				Supprimer un remove() ou removeChild().
+
+				var child = document;getElementById("p1");
+				child.parentNode.removeChild(child);
+
+				Remplacer un élément par un autre avec:
+				parent.replaceChild(para, child);
+
+				Voir damier en DOM.*/
+
+				//element.setAttribute(attribute, value)
+				//document.createElement(element);
+				//document.remove/append/replaceChild(new, old);
+
+				//Générer une liste d'image à partir de DOM
+
+			</script>
+
+			<input type="button" name="Bouton" id="Button" value="Bouton1" onclick ="epaissis();">
+
+			<!--<input type="button" name="Bouton2" id="Button2" value="Bouton" onclick ="epaissis()">-->
+
+			<input type="button" name="Bouton3" id="Button3" value="Bouton3" onclick ="epaissis();">
+
+			<h3>Animations en DOM</h3>
+
+			<DIV id="Container" style="width: 400px; height: 400px; background-color: green; position: relative">
+
+				<DIV id="animer" style="width: 50px; height: 50px; background-color: orange; position: absolute;">
+					
+				</DIV>
+				
+			</DIV>
+
+
+			<input type="button" name="Bouton4" id="Button4" value="Lancer animation">
+
+			<input type="button" name="Bouton5" id="Button5" value="Lancer retour">
+
+			<input type="button" name="Bouton6" id="Button6" value="Lancer up">
+
+			<script type="text/javascript">
+
+				
+				/*{
+					//Permet de déplacer en diagonale l'objet animé
+					var carrer = document.getElementById("animer");
+
+					var pos = 0;
+					var id = setInterval(frame, 5);
+					function frame() 
+					{
+					    if (pos == 350) 
+					    {
+					    	clearInterval(id);
+					    } 
+					    else
+					    {
+					    	pos++;
+					    	carrer.style.top = pos + 'px';
+					    	carrer.style.left = pos + 'px';
+					    }
+					  }
+				}*/
+
+				var objAnim = document.getElementById("animer");
+				var objbtn = document.getElementById("Button4");
+				var objbtnR = document.getElementById("Button5");
+				var objbtnU = document.getElementById("Button6");
+
+				objbtn.addEventListener('click', move, false);
+				objbtnR.addEventListener('click', moveG, false);
+				objbtnU.addEventListener('click', moveUp, false);
+
+				function move()
+				{
+					var pos = 0;
+					var position = objAnim.style;
+					var id = setInterval(bouger, 10);
+
+					/*for (i= 0; i<=350; i++)
+					{
+						pos++;
+					}*/
+
+					
+
+					function bouger()
+					{
+						if (pos == 350 )
+					  {  
+					      clearInterval(id);
+					  }
+					  else
+					  {
+					      pos++;
+					      position.left = pos + 'px';
+					      position.top = pos + 'px';
+					  }
+					}
+					
+				}
+
+				function moveG()
+				{
+					var posG = 350;
+					var position = objAnim.style;
+					var id = setInterval(bougerG, 10);
+
+					
+
+					function bougerG()
+					{
+						if (posG == 0 )
+					  {  
+					      clearInterval(id);
+					  }
+					  else
+					  {
+					      posG--;
+					      position.left = posG + 'px';
+					  }
+					}
+					
+				}
+
+				function moveUp()
+				{
+					var posUx = 0;
+					var posUy = 350
+					var position = objAnim.style;
+					var id = setInterval(bougerU, 10);
+					
+
+					function bougerU()
+					{
+						if (posUx == 350 )
+					  {  
+					      clearInterval(id);
+					  }
+					  else
+					  {
+					      posUx++;
+					      posUy--;
+					      position.left = posUx + 'px';
+					      position.top = posUy + 'px';
+					  }
+					}
+					
+				}
+
+				let posx = 0;
+				let posy = 0;
+
+				document.addEventListener('keydown', function(e){
+					
+					var objAnim = document.getElementById("animer");
+					var position = objAnim.style;
+
+					switch(e.keyCode){
+							case 38:
+								posy = posy - 5;
+					      		position.top = posy + 'px';
+					      		console.log(posy);
+					      		if(posy <= 0)
+					      		{
+					      			posy = 0;
+					      			position.top = posy + 'px';
+					      		}
+								break;
+
+							case 39:
+								posx = posx + 5;
+					      		position.left = posx + 'px';
+					      		console.log(posx);
+					      		if(posx >= 350)
+					      		{
+					      			posx = 350;
+					      			position.left = posx + 'px';
+					      		}
+								break;
+
+							case 40:
+								posy = posy + 5;
+					      		position.top = posy + 'px';
+					      		console.log(posy);
+					      		if(posy >= 350)
+					      		{
+					      			posy = 350;
+					      			position.top = posy + 'px';
+					      		}
+								break;
+
+							case 37:
+								posx = posx - 5;
+					      		position.right = posx + 'px';
+					      		console.log(posx);
+					      		if(posx <= 0)
+					      		{
+					      			posx = 0;
+					      			position.right = posx + 'px';
+					      		}
+								break;
+
+					}
+				});
+
+			</script>
+
+		<footer>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

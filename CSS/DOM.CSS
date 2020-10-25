@@ -1,0 +1,86 @@
+/*@font-face{
+	font-family: "MaPolice";
+	src: url("./Police/Aaargh.eot") format("eot"),
+		url("./Police/Aaargh.woff") format("woff"),
+		url("./Police/Aaargh.ttf") format("truetype"),
+		url("./Police/Aaargh.svg") format("svg");
+}*/
+h1{color: red; font-size: 305%; font-family: "MaPolice", Calibri, Serif; text-decoration: underline;}
+h2{color: red;font-size: 215%; font-family: "MaPolice", Calibri, Serif; text-decoration: underline;}
+
+div{
+	width: 50%;
+}
+
+.text, p, li{
+	font-family: "MaPolice", Calibri, Serif;
+	font-weight: bold;
+}
+.paragraphe{
+	font-size: 105%;
+	font-family: "MaPolice", Calibri, Serif;
+	font-weight: 600;
+}
+.exemple{ /*Balise <b>*/
+	color: darkgreen;
+	border-style: solid;
+	border-color: black;
+	text-align: center;
+}
+
+.underline{
+	font-size: 105%;
+	font-family: "MaPolice", Calibri, Serif;
+	font-weight: 600;
+	text-decoration-line: underline;
+	text-decoration-color: #ff0000;
+}
+
+strong{
+	font-style: italic;
+	text-decoration-line: underline;
+}
+canvas{
+	border : 2px solid #000000;
+}
+
+.styled {
+	border: 32;
+	border-color: #78f59a;
+	line-height: 2.5;
+	padding: 0 20px;
+	font-size: 1rem;
+	text-align: center;
+	color: #fff;
+	text-shadow: 1px 1px 1px #000;
+	border-radius: 10px;
+	background-color: #32a852;
+	background-image: linear-gradient(to top left,
+										rgba(0, 0, 0, .2),
+										rgba(0, 0, 0, .2) 30%,
+										rgba(0, 0, 0, 0)
+										);
+	box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+				inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+ul{
+	font-style: italic;
+	text-decoration-line: underline;
+}
+
+.toto{
+	background-color: red;
+}
+
+.tutu{
+	border: solid;
+}
+
+.true{
+	background-color: green;
+}
+
+.false{
+	background-color: red;
+}

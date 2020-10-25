@@ -1,0 +1,187 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head name="head">
+		<title>
+			DOM - Web
+		</title>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/Form.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="">
+		<script type="text/javascript" src="">
+			
+		</script>
+	</head>
+
+	<body id='body'>
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1 id="middle">Mega Formulaire</h1>
+
+		<!-- email1, email2 ; bouton -> met l'email1 and l'email2 -->
+		<!-- téléphone -->
+
+		<div class="form">
+		<form id="form" name="form" action="JS_traitement_formulaire.html" method="get"></form>
+		<!--La méthode get renvoie les informations dans l'url de la page ouverte, l'action possède l'adresse de la page à ouvrir.-->
+
+			<input type=hidden name="hidden" id="hidden" value="Bonjour"/>
+			<!--Un input caché contenant la valeur "Bonjour" pour pouvoir commencer à 1 lors de la récupération des informations..-->
+
+			<fieldset id="Infos">
+				<legend>Informations Générales</legend>
+				<!--Légende relative à ces éléments du formulaire.-->
+				<label for="nom">Nom :</label> <input type="text" name="nom" id="nom" maxlength="20" size="20"/><br>
+				<!--Réception du Nom dans un input de type text et d'id nom.-->
+				<!--Le label permet d'associer le libellé au champ en renseignant son id.-->
+				<label for="prenom">Prénom :</label> <input type="text" name="prenom" id="prenom" maxlength="20" size="20"/><br> 
+				<!--Réception du Prénom dans un input de type text et d'id prenom.-->
+				<label for="ddn">Date de naissance :</label> <input type="date" name="ddn" id="ddn"/><br>
+				<!--Réception de la date de naissance dans un input de type date et d'id ddn.-->
+				<label>Genre :</label>
+				<input type="radio" name="genre" id="genre0" value="Homme" checked="checked"/>Homme
+				<input type="radio" name="genre" id="genre1" value="Femme"/>Femme
+				<input type="radio" name="genre" id="genre2" value="Autre"/>Autre<br>
+				<!--Réception du genre dans un input de type radio et d'id genre.-->
+				<script type="text/javascript">
+					function generateCheckbox()
+					{
+						let progArray = ["C", "C++", "JS", "PHP", "Python", "C#", "Pascal", "GDScript"];
+
+						let box = document.createElement("div");
+						box.setAttribute("class", "box");
+						box.setAttribute("id", "container0");
+
+						document.getElementById("Infos").appendChild(box);
+
+						let input;
+						let label;
+						let node;
+						let br;
+
+						for(let i = 0; i < progArray.length; i++)
+						{
+							label = document.createElement("label");
+							label.setAttribute("for", progArray[i]);
+							node = document.createTextNode(progArray[i]);
+
+							label.appendChild(node);
+
+							document.getElementById("container0").appendChild(label);
+
+							input = document.createElement("input");
+							input.setAttribute("type", "checkbox");
+							input.setAttribute("name", "check-prog");
+							input.setAttribute("value", progArray[i]);
+							input.setAttribute("class", "progCheckbox");
+							if(i==0)
+							{
+								input.setAttribute("checked", "checked");
+							}
+							document.getElementById("container0").appendChild(input);
+						}
+					}
+
+					generateCheckbox();
+
+
+					function curseurLangue()
+					{
+						let input = document.createElement("input");
+						input.setAttribute("type", "range");
+						input.setAttribute("value", "0");
+						input.setAttribute("max", "5");
+						input.setAttribute("min", "0");
+						input.setAttribute("step", "1");
+						input.setAttribute("onchange", "edit(this)");
+
+						document.getElementById("Infos").appendChild(input);
+
+						let para = document.createElement("p");
+						para.setAttribute("id", "p1");
+						let node = document.createTextNode("A2");
+
+						para.appendChild(node);
+
+						document.getElementById("Infos").appendChild(para);
+					}
+
+					curseurLangue();
+
+					function edit(X)
+					{
+						let str = X.value;
+						if(str == 0)
+						{
+							document.getElementById("p1").innerHTML = "A2";
+						}else if(str == 1){
+							document.getElementById("p1").innerHTML = "A1";
+						}else if(str == 2){
+							document.getElementById("p1").innerHTML = "B2";
+						}else if(str == 3){
+							document.getElementById("p1").innerHTML = "B1";
+						}else if(str == 4){
+							document.getElementById("p1").innerHTML = "C2";
+						}else if(str == 5){
+							document.getElementById("p1").innerHTML = "C1";
+						}
+					}
+				</script>
+				<br>
+			</fieldset>
+			<!--Le fieldset permet de regrouper divers éléments du formulaire et d'y associer une légende.-->
+
+			<br>
+
+			<fieldset>
+				<legend>Informations vidéo-ludique</legend>
+				<!--Réception du poids dans un input de type number et d'id poids.-->
+				<label for="frequenceSportif">Fréquence Sportive</label>
+					<select name="frequenceSportif" id="frequenceSportif" size="1">
+						<option>Plus d'une fois par semaine
+						<option>Une fois par semaine
+						<option>Une fois par mois
+						<option>Une fois par trimestre
+						<option>Moins d'une fois par trimestre
+					</select>
+				<!--Réception de la fréquence sportive dans un input de type select et d'id frequenceSportif.-->
+			</fieldset>
+
+			<br>
+
+			<fieldset>
+				<legend>Informations de contact</legend>
+				<label for="mail">Email :</label> <input type="mail" name="mail" id="mail" maxlength="40" size="20" placeholder="e-mail" /><br>
+				<!--Réception de l'e-mail dans un input de type mail et d'id mail.-->
+				<!--Le placeholder permet d'afficher un texte dans le fond de l'espace prévu à la saisie utilisateur.-->
+				<label for="telephone">Téléphone :</label> <input type="number" name="telephone" id="telephone" maxlength="20" /><br>
+				<!--Réception du téléphone dans un input de type number et d'id telephone.-->
+				
+				<div id="BoutonsFormulaires">
+					<label for="reset">Réinitialiser : </label><input class="boutonsFormulaires" type="reset" name="reset" id="reset" value="Reset"/><br>
+					<!--Réception de l'information d'annulation du contenu du formulaire dans un input de type reset et d'id reset.-->
+					<label for="submit">Valider : </label><input class="boutonsFormulaires" type="submit" name="submit" id="submit" value="Valider" onClick=""/><br>
+					<!--Réception de l'information de soumission du contenu du formulaire dans un input de type submit et d'id submit. A envoyé dans une page traitement formulaire.-->
+				</div>
+				<!--Boutons pour annuler ou soumettre la saisie.-->
+			</fieldset>
+		</form>
+		</div>
+
+		<br>
+
+		<footer id='footer'>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

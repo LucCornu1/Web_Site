@@ -1,0 +1,86 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head name="head">
+		<title>
+			DOM - Web
+		</title>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/DOM.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="">
+		<script type="text/javascript" src="">
+			
+		</script>
+	</head>
+
+	<body id='body'>
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1>Palindrôme</h1>
+
+		<p>Veuillez entrer un mot. La boite s'illuminera de vert s'il s'agit d'un palindrôme, sinon elle s'illuminera de rouge</p>
+
+			<script type="text/javascript">
+				function palindrome(event)
+				{
+					let S_tr = str.srcElement.value;
+					let i = 0;
+					let b = 1;
+
+					while (i < S_tr.length && b == 1)
+					{
+						//console.log("S_tr : ", S_tr[i]);
+						//console.log("S_tr2 : ", S_tr[S_tr.length-i-1]);
+
+						if (S_tr[i] != S_tr[S_tr.length-i-1])
+						{
+							b = 0;
+						}
+						i++;
+					}
+
+					if (b == 0)
+					{
+						document.getElementById('input1').setAttribute('class', 'false');
+					}else{
+						document.getElementById('input1').setAttribute('class', 'true');
+					}
+				}
+
+				//palindrome("JaaJ");
+
+
+				function creationInput()
+				{
+					let input = document.createElement('input');
+
+					input.setAttribute('type', 'text');
+					input.setAttribute('id', 'input1');
+					input.setAttribute('name', 'input1');
+					input.setAttribute('minlength', '4');
+					input.setAttribute('maxlength', '30');
+					input.setAttribute('placeholder', 'Veuillez saisir un mot');
+					input.setAttribute('onblur', 'palindrome(event)');
+
+
+					document.getElementById('body').insertBefore(input, document.getElementById('footer'));
+				}
+
+				creationInput();
+			</script>
+
+		<footer id='footer'>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

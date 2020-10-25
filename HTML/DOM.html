@@ -1,0 +1,153 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head name="head">
+		<title>
+			DOM - Web
+		</title>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/DOM.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="">
+		<script type="text/javascript" src="">
+			
+		</script>
+	</head>
+
+	<body id='body'>
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1>Titre</h1>
+
+			<script type="text/javascript">
+				function fnode()
+				{
+					let html = document.firstChild.name;
+					console.log(html);
+
+					let X = document.firstChild.nodeName;
+					console.log(X);
+
+					X = document.lastChild.nodeName;
+					console.log(X);
+
+					let entete = document.getElementsByTagName(html)[0].firstChild.nodeName;
+					console.log(entete);
+
+					let titre = document.getElementsByTagName(html)[0].firstChild.childNodes[0].nodeType;
+					if(titre==3)
+					{
+						titre = "TEXT_NODE";
+					}
+					console.log(titre);
+
+					titre = document.getElementsByTagName(html)[0].firstChild.childNodes[0].nodeName;
+					console.log(titre);
+
+					let objEntete = document.getElementsByTagName(html)[0].firstChild;
+					console.log(objEntete);
+
+					let objTitle = document.getElementsByTagName('head')[0].firstChild.nextSibling;
+					console.log(objTitle);
+
+					objTitle = objEntete.firstChild.nextSibling;
+					console.log(objTitle);
+
+					let titreValue = objTitle.innerHTML;
+					console.log(titreValue);
+
+					titreValue = objTitle.childNodes[0].nodeValue;
+					console.log('texte du title : ', titreValue);
+
+					titreValue = objTitle.firstChild.nodeValue;
+					console.log('texte du title : ', titreValue);
+				}
+
+				fnode();
+
+				document.write("<div id='div1'><p class='paragraphe' id='x1'>XX</p><p class='paragraphe'>YY</p></div>");
+
+				function creationParagraphe()
+				{
+					//Création de l'élément p
+					let para = document.createElement('p');
+
+					//Création du noeud texte
+					let node = document.createTextNode("Ceci est un nouveau texte pour un nouveau paragraphe");
+
+					//Le texte est un enfant à ajouter à son parent : le paragraphe
+					para.appendChild(node);
+
+					//On ajoute le paragraphe à un div
+					document.getElementById('div1').appendChild(para);
+
+					para = document.createElement('p');
+
+					node = document.createTextNode("Ceci est un nouveau texte pour un quatrième paragraphe");
+
+					para.appendChild(node);
+
+					let x1 = document.getElementById('div1').firstChild;
+
+					document.getElementById('div1').insertBefore(para, x1);
+
+
+					document.getElementById('div1').firstChild.setAttribute('name', 'JaaJ');
+					document.getElementById('div1').firstChild.setAttribute('class', 'toto tutu');
+
+					//Autre méthode
+					/*document.getElementById('div1').firstChild.setAttribute('class', 'toto');
+					document.getElementById('div1').firstChild.classList.add('tutu');*/
+
+					//document.getElementById('div1').firstChild.setAttribute('class', 'tutu'); Ne fonctionne pas !
+				}
+
+				creationParagraphe();
+
+				function creaBouton()
+				{
+					let btn = document.createElement('button');
+					btn.setAttribute('onclick', 'remplacer();');
+					let txt = document.createTextNode("Remplacer un paragraphe");
+					btn.appendChild(txt);
+
+					document.getElementById('body').appendChild(btn);
+				}
+
+				creaBouton();
+
+				function remplacer()
+				{
+					//Création de l'élément p
+					let para = document.createElement('p');
+
+					//Création du noeud texte
+					let node = document.createTextNode("C'est la magiiiiiiiiie");
+
+					//Le texte est un enfant à ajouter à son parent : le paragraphe
+					para.appendChild(node);
+
+					x1 = document.getElementById('x1');
+
+					document.getElementById('div1').replaceChild(para, x1);
+				}
+
+				//console.log(document.getElementById('div1').firstChild.name);
+
+				//document.getElementById('div1').firstChild.removeAttribute('class');
+			</script>
+
+		<footer>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>
