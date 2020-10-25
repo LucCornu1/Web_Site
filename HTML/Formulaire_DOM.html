@@ -59,7 +59,6 @@
 						let input;
 						let label;
 						let node;
-						let br;
 
 						for(let i = 0; i < progArray.length; i++)
 						{
@@ -69,7 +68,7 @@
 
 							label.appendChild(node);
 
-							document.getElementById("container0").appendChild(label);
+							box.appendChild(label);
 
 							input = document.createElement("input");
 							input.setAttribute("type", "checkbox");
@@ -80,7 +79,7 @@
 							{
 								input.setAttribute("checked", "checked");
 							}
-							document.getElementById("container0").appendChild(input);
+							box.appendChild(input);
 						}
 					}
 
@@ -128,6 +127,102 @@
 							document.getElementById("p1").innerHTML = "C1";
 						}
 					}
+
+					function mail()
+					{
+						let label = document.createElement("label");
+						node = document.createTextNode("Mail 1 : ");
+
+						label.appendChild(node);
+
+						document.getElementById("Infos").appendChild(label);
+
+						let mail1 = document.createElement("input");
+						mail1.setAttribute("type", "mail");
+						mail1.setAttribute("required", "required");
+						mail1.setAttribute("id", "mail1");
+
+						document.getElementById("Infos").appendChild(mail1);
+
+						label = document.createElement("label");
+						node = document.createTextNode("Mail 2 : ");
+
+						label.appendChild(node);
+
+						document.getElementById("Infos").appendChild(label);
+
+						let mail2 = document.createElement("input");
+						mail2.setAttribute("type", "mail");
+						mail2.setAttribute("required", "required");
+						mail2.setAttribute("id", "mail2");
+
+						document.getElementById("Infos").appendChild(mail2);
+
+						label = document.createElement("label");
+						node = document.createTextNode("Same ? ");
+
+						label.appendChild(node);
+
+						document.getElementById("Infos").appendChild(label);
+
+						let radio = document.createElement("input");
+						radio.setAttribute("type", "checkbox");
+						radio.setAttribute("onclick", "sameMail()");
+
+						document.getElementById("Infos").appendChild(radio);
+					}
+
+					mail();
+
+					function sameMail()
+					{
+						let mail1 = document.getElementById("mail1");
+						let mail2 = document.getElementById("mail2");
+
+						if(mail1.value != mail2.value)
+						{
+							mail2.value = mail1.value;
+						}else{
+							mail2.value = "";
+						}
+					}
+
+					document.write("<br><br>");
+
+					function listeBox()
+					{
+						let diplomeArray = ["Rien", "Brevet", "Bac", "Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5"];
+
+						let option;
+
+						let label = document.createElement("label");
+						label.setAttribute("for", "diplomes");
+						let node = document.createTextNode("Diplômes : ");
+
+						label.appendChild(node);
+
+						document.getElementById("Infos").appendChild(label);
+
+						let select = document.createElement("select");
+						select.setAttribute("name", "diplomes");
+
+						document.getElementById("Infos").appendChild(select);
+
+						for(let i = 0; i < diplomeArray.length; i++)
+						{
+							option = document.createElement("option");
+							option.setAttribute("value", diplomeArray[i]);
+							console.log(option.value);
+
+							node = document.createTextNode(diplomeArray[i]);
+
+							option.appendChild(node);
+
+							select.appendChild(option);
+						}
+					}
+
+					listeBox();
 				</script>
 				<br>
 			</fieldset>
@@ -136,7 +231,7 @@
 			<br>
 
 			<fieldset>
-				<legend>Informations vidéo-ludique</legend>
+				<legend>Autres</legend>
 				<!--Réception du poids dans un input de type number et d'id poids.-->
 				<label for="frequenceSportif">Fréquence Sportive</label>
 					<select name="frequenceSportif" id="frequenceSportif" size="1">
@@ -152,15 +247,9 @@
 			<br>
 
 			<fieldset>
-				<legend>Informations de contact</legend>
-				<label for="mail">Email :</label> <input type="mail" name="mail" id="mail" maxlength="40" size="20" placeholder="e-mail" /><br>
-				<!--Réception de l'e-mail dans un input de type mail et d'id mail.-->
-				<!--Le placeholder permet d'afficher un texte dans le fond de l'espace prévu à la saisie utilisateur.-->
-				<label for="telephone">Téléphone :</label> <input type="number" name="telephone" id="telephone" maxlength="20" /><br>
-				<!--Réception du téléphone dans un input de type number et d'id telephone.-->
-				
+				<legend>Fin de formulaire</legend>
 				<div id="BoutonsFormulaires">
-					<label for="reset">Réinitialiser : </label><input class="boutonsFormulaires" type="reset" name="reset" id="reset" value="Reset"/><br>
+					<label for="reset">Reset : </label><input class="boutonsFormulaires" type="reset" name="reset" id="reset" value="Reset"/><br>
 					<!--Réception de l'information d'annulation du contenu du formulaire dans un input de type reset et d'id reset.-->
 					<label for="submit">Valider : </label><input class="boutonsFormulaires" type="submit" name="submit" id="submit" value="Valider" onClick=""/><br>
 					<!--Réception de l'information de soumission du contenu du formulaire dans un input de type submit et d'id submit. A envoyé dans une page traitement formulaire.-->
