@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<HTML>
+
+	<HEAD> <!--Information de configuration : encodage, langue,...-->
+		<!--Méthode d'insertion du style dans le HEAD-->
+		<style type="text/css">
+			.centre
+			{
+				margin-left: auto;
+				margin-right: auto;
+				text-align:center;
+			}
+			#divPrincipal
+			{
+				background-color: fuchsia;
+				height: 600px;
+				width: 600px;
+				position: relative;
+			}
+			.divElement
+			{
+				position: absolute;
+				height: 30px;
+				width: 30px;
+			}
+			#divJoueur
+			{
+				background-color: green;
+			}
+			#divObstacle
+			{
+				background-color: yellow;
+			}
+		</style>
+		<!--Appelle du style par un fichier externe.-->
+		<link rel="stylesheet" type="text/css" href="../CSS/Formulaire.css" charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../Contenus/images/cirno9.jpg"/>
+		<meta charset="utf-8"/>	
+		<script type="text/javascript">
+			function init()
+			{
+				//Récupération du footer et du body pour les insertions
+				var eFooter = document.getElementById('footer');
+				var eBody = document.getElementById('Body');
+
+				//Création du divPrincipal
+				var eDivPrincipal = document.createElement("div");
+				eDivPrincipal.setAttribute("id","divPrincipal");
+				eDivPrincipal.setAttribute("class","centre");
+				
+				//Création du divJoueur
+				var eDivJoueur = document.createElement("div");
+				eDivJoueur.setAttribute("class","divElement");
+				eDivJoueur.setAttribute("id","divJoueur");
+				eDivJoueur.style.top = "0px";
+				eDivJoueur.style.left = "0px";
+
+				//Création du divObstacle
+				var eDivObstacle = document.createElement("div");
+				eDivObstacle.setAttribute("class","divElement");
+				eDivObstacle.setAttribute("id","divObstacle");
+				eDivObstacle.style.left = "285px";
+				eDivObstacle.style.top = "285px";
+
+				eDivPrincipal.appendChild(eDivJoueur);
+				eDivPrincipal.appendChild(eDivObstacle);
+
+				eBody.insertBefore(eDivPrincipal,eFooter);
+
+				//Création de l'eventListener.
+				document.addEventListener("keydown",Input);
+			}
+
+			const TAILLECONTENEUR = 600;
+			const TAILLEJOUEUR = 30;
+			const PAS = 15;
+			var bInput = false;
+			function Input(event)
+			//BUT : Récupérer les inputs de l'utilisateur et déplacer le divJoueur.
+			//ENTREE : Les inputs de l'utilisateur via un EventListener "keydown" et le div joueur.
+			//SORTIE : Les mouvements du divJoueur.
+			{
+				if (bInput!=true)
+				{
+					bInput=true;
+
+					var eJoueur = document.getElementById("divJoueur");
+					var top = eJoueur.style.top.substring(0,eJoueur.style.top.indexOf('p'));
+					var left = eJoueur.style.left.substring(0,eJoueur.style.left.indexOf('p'));
+
+					//console.log(top+" "+left);
+
+					//console.log(event);
+					//console.log(event.code);
+					switch(event.code)
+					{
+						case "ArrowUp" :
+							top=Deplacement(top,"-","Vertical");
+						break;
+						case "ArrowDown" :
+							top=Deplacement(top,"+","Vertical");
+						break;
+						case "ArrowRight" :
+							left=Deplacement(left,"+","Horizontal");
+						break;
+						case "ArrowLeft" :
+							left=Deplacement(left,"-","Horizontal");
+						break;
+						default:
+						break;
+					}
+					eJoueur.style.top = top+"px";
+					eJoueur.style.left = left+"px";
+
+					bInput=false;
+				}
+			}
+
+			function Deplacement(valeur,direction,cardinal,pas=PAS)
+			{
+				//Réalisation du déplacement.
+				if (direction=="+")
+				{
+					for (var i = 0; i < pas; i++)
+					{
+						valeur++;
+						if (Collision(valeur,direction,cardinal)) //Gestion de la collision.
+						{
+							valeur=valeur-2*PAS;
+						}
+					}
+				}
+				else
+				{
+					for (var i = 0; i < pas; i++)
+					{
+						valeur--;
+						if (Collision(valeur,direction,cardinal)) //Gestion de la collision.
+						{
+							valeur=valeur+2*PAS;
+						}
+					}
+				}
+
+				//Vérification et application du déplacement.
+				if (valeur<0)
+					valeur=0;
+				if (valeur>(TAILLECONTENEUR-TAILLEJOUEUR))
+				{
+					valeur=TAILLECONTENEUR-TAILLEJOUEUR;
+				}
+				return valeur;
+			}
+
+			function Collision(valeur,direction,cardinal)
+			//BUT : Gérer la collision entre deux divs.
+			//ENTREE : Le déplacement du div joueur.
+			//SORTIE : La collision ou non.
+			{
+				//console.log("Test Collision");
+				var Obstacle = document.getElementById("divObstacle");
+				var oX = Obstacle.style.left.substring(0,Obstacle.style.left.indexOf('p'));
+				var oY = Obstacle.style.top.substring(0,Obstacle.style.top.indexOf('p'));
+
+				var Joueur = document.getElementById("divJoueur");
+				var jX =  Joueur.style.left.substring(0,Joueur.style.left.indexOf('p'));
+				var jY = Joueur.style.top.substring(0,Joueur.style.top.indexOf('p'));
+
+				if (cardinal == "Horizontal")
+					jX=valeur;
+				else
+					jY=valeur;
+				
+				jX=parseInt(jX);
+				jY=parseInt(jY);
+				oX=parseInt(oX);
+				oY=parseInt(oY);
+
+				var bCollision = true;
+
+				if (jY+TAILLEJOUEUR <= oY)
+				{
+					bCollision=false;
+				}
+				if (jY >= oY+TAILLEJOUEUR)
+				{
+					bCollision=false;
+				}
+				if (jX+TAILLEJOUEUR <= oX)
+				{
+					bCollision=false;
+				}
+				if (jX >= oX+TAILLEJOUEUR)
+				{
+					bCollision=false;
+				}
+
+				if (bCollision) //Pour la console.
+				{
+					//console.log("collision");
+					//console.log(cardinal);
+					//console.log(direction);
+					if (cardinal == "Horizontal")
+					{
+						if(direction == "+")
+						{
+							console.log("Collision par la droite du joueur.");
+						}
+						else if(direction == "-")
+						{
+							console.log("Collision par la gauche du joueur.");
+						}
+					}
+					else if(cardinal == "Vertical")
+					{
+						if(direction == "-")
+						{
+							console.log("Collision par le haut du joueur.");
+						}
+						else if(direction == "+")
+						{
+							console.log("Collision par le bas du joueur.");
+						}
+					}
+				}
+
+				return bCollision;
+			}
+		</script>
+
+		<TITLE id="Title">DOM Collision</TITLE>
+		<lang="fr" id="Body"/>
+	</HEAD>
+
+	<BODY onload="init()">
+		<header><!--Identité : Logo, bannière--></header>
+		<h2 class="centre">DOM Collision</h2>	
+
+		<footer id="footer">
+			Contact : r.schlotter@ludus-académie.com<br/>
+			Téléphone : +33624202366
+		</footer>	
+	</BODY>
+</HTML>

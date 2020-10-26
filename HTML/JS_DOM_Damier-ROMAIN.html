@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<HTML>
+
+	<HEAD> <!--Information de configuration : encodage, langue,...-->
+		<!--Méthode d'insertion du style dans le HEAD-->
+		<style type="text/css">
+			.centre
+			{
+				margin-left: auto;
+				margin-right: auto;
+				text-align:center;
+			}
+			.carreau
+			{
+				width: 90px;
+				height: 90px;
+			}
+			.noir
+			{
+				background-color: black;
+			}
+			.blanc
+			{
+				background-color: white;
+			}
+		</style>
+		<!--Appelle du style par un fichier externe.-->
+		<link rel="stylesheet" type="text/css" href="../CSS/Formulaire.css" charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../Contenus/images/cirno9.jpg"/>
+		<meta charset="utf-8"/>
+		<lang="fr" id="Body"/>	
+		<script type="text/javascript">
+			function init()
+			{
+				//Récupération du footer et du body pour les insertions
+				var eFooter = document.getElementById('footer');
+				var eBody = document.getElementById('Body');
+
+				//Gestion des inputs couleur
+				var eDivCouleur = document.createElement("div");
+				eDivCouleur.setAttribute("class","centre");
+
+				var eCouleur1 = document.createElement("input");
+				eCouleur1.setAttribute("type","color");
+				eCouleur1.setAttribute("id","couleur1");
+
+				var eCouleur2 = document.createElement("input");
+				eCouleur2.setAttribute("type","color");
+				eCouleur2.setAttribute("id","couleur2");
+				eCouleur2.setAttribute("value","#ffffff");
+
+				eDivCouleur.appendChild(eCouleur1);
+				eDivCouleur.appendChild(eCouleur2);
+
+				eBody.insertBefore(eDivCouleur,eFooter);
+
+				//Gestion de l'input nombre.
+				var eInput = document.createElement("input");
+				eInput.setAttribute("type","number");
+				eInput.setAttribute("id","eInput");
+				var eDivInput = document.createElement("div");
+				eDivInput.setAttribute("class","centre");
+				eDivInput.appendChild(eInput);
+
+				eBody.insertBefore(eDivInput,eFooter);
+
+				//Gestion du bouton de génération.
+				var eBouton = document.createElement("button");
+				var boutonText = document.createTextNode("Générer Damier");
+				eBouton.appendChild(boutonText);
+				eBouton.setAttribute("onclick","GenerateTable()");
+
+				var eDivBouton = document.createElement("div");
+				eDivBouton.setAttribute("class","centre");
+				eDivBouton.appendChild(eBouton);
+
+				eBody.insertBefore(eDivBouton,eFooter);
+			}
+
+			function GenerateTable()
+			//BUT : Générer un damier.
+			//ENTREE : La taille du damier et les couleurs de ses carreaux.
+			//SORTIE : Un damier d'une taille de 0x0 à 15x15.
+			{
+				let nTaille=10; //Taille par défaut du damier.
+
+				//Récupération des couleurs.
+				var cPair = document.getElementById("couleur1").value;
+				var cImpair = document.getElementById("couleur2").value;
+
+				//console.log(cPair);
+				//console.log(cImpair);
+
+				//Récupération de la taille du damier.
+				var eInput = document.getElementById('eInput');
+				//console.log(eInput.value);
+
+				//Gestion de la taille minimale ou maximale du damier.
+				if (eInput.value!="")
+					nTaille=eInput.value;
+
+				if(nTaille>15)
+				{
+					nTaille=15;
+					alert("Taille maximum 15");
+				}
+				else if(nTaille<0)
+				{
+					alert("Taille minimum 0");
+				}
+
+				//Création du squelette du damier et suppression de l'ancien damier si-existe.
+				if (document.getElementById('damier')!=null)
+					document.getElementById('damier').remove();
+
+				var eTable = document.createElement("table");
+				eTable.setAttribute("id","damier");
+				eTable.setAttribute("class","centre");
+				
+				//Création des carreaux du damier.
+				for (var nI=0; nI<nTaille; nI++)
+				{
+					let eTr = document.createElement("tr");
+					for (nJ=0; nJ<nTaille; nJ++)
+					{
+						let eTd = document.createElement("td");
+						if ((nI+nJ)%2 !=0)
+						{
+							//eTd.setAttribute("class","noir");
+							eTd.style.backgroundColor = cImpair;
+						}
+						else
+						{
+							//eTd.setAttribute("class","blanc");
+							eTd.style.backgroundColor = cPair;
+						}
+						eTd.classList.add("carreau");
+						eTr.appendChild(eTd);
+					}
+					eTable.appendChild(eTr);
+				}
+
+				//Application du damier dans la page.
+				var eFooter = document.getElementById('footer');
+				var eBody = document.getElementById('Body');
+
+				eBody.insertBefore(eTable,eFooter);
+			}
+		</script>
+
+		<TITLE id="DOM_Palindrome">DOM Damier</TITLE>
+	</HEAD>
+
+	<BODY onload="init();">
+		<header><!--Identité : Logo, bannière--></header>
+		<h2 class="centre">DOM Damier</h2>
+
+		<footer id="footer">
+			Contact : r.schlotter@ludus-académie.com<br/>
+			Téléphone : +33624202366
+		</footer>	
+	</BODY>
+</HTML>

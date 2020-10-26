@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<HTML>
+
+	<HEAD> <!--Information de configuration : encodage, langue,...-->
+		<!--Méthode d'insertion du style dans le HEAD-->
+		<style type="text/css">
+			.centre
+			{
+				margin-left: auto;
+				margin-right: auto;
+				text-align:center;
+			}
+		</style>
+		<!--Appelle du style par un fichier externe.-->
+		<link rel="stylesheet" type="text/css" href="../CSS/Formulaire.css" charset="utf-8"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../Contenus/images/cirno9.jpg"/>
+		<meta charset="utf-8"/>
+		<lang="fr" id="Body"/>	
+		<script type="text/javascript">
+			function init()
+			{
+
+			}
+		</script>
+
+		<TITLE id="DOM_">DOM</TITLE>
+	</HEAD>
+
+	<BODY onload="init()">
+		<header><!--Identité : Logo, bannière--></header>
+		<h2 class="centre">Patate</h2>
+
+		<form id="form" name="form" action="reception_formulaire.html" method="get"></form>
+		<!--La méthode get renvoie les informations dans l'url de la page ouverte, l'action possède l'adresse de la page à ouvrir.-->
+
+			<input type=hidden name="hidden" id="hidden" value="Bonjour"/>
+			<!--Un input caché contenant la valeur "Bonjour" pour pouvoir commencer à 1 lors de la récupération des informations..-->
+
+			<fieldset>
+				<legend>Informations Générales</legend>
+				<!--Légende relative à ces éléments du formulaire.-->
+				<label for="nom">Nom :</label> <input type="text" name="nom" id="nom" maxlength="20" size="20"/><br/>
+				<!--Réception du Nom dans un input de type text et d'id nom.-->
+				<!--Le label permet d'associer le libellé au champ en renseignant son id.-->
+				<label for="prenom">Prénom :</label> <input type="text" name="prenom" id="prenom" maxlength="20" size="20"/><br/> 
+				<!--Réception du Prénom dans un input de type text et d'id prenom.-->
+				<label for="ddn">Date de naissance :</label> <input type="date" name="ddn" id="ddn"/><br/>
+				<!--Réception de la date de naissance dans un input de type date et d'id ddn.-->
+				<label for="ddn">Genre :</label>
+				<input type="radio" name="genre" id ="genre" value ="Homme" checked="checked"/>Homme
+				<input type="radio" name="genre" id ="genre" value="Femme" />Femme
+				<input type="radio" name="genre" id ="genre" value ="Autre"/>Autre<br/>
+				<!--Réception du genre dans un input de type radio et d'id genre.-->
+			</fieldset>
+			<!--Le fieldset permet de regrouper divers éléments du formulaire et d'y associer une légende.-->
+
+			<fieldset>
+				<legend>Informations physiques</legend>
+				<label for="taille">Taille (cm) :</label><input type="number" name="taille" id="taille" min="1" max="250" /><br/>
+				<!--Réception de la taille dans un input de type number et d'id taille.-->
+				<label for="poids">Poids (kg) :</label><input type="number" name="poids" id="poids" min="1" max="600" /> <br />
+				<!--Réception du poids dans un input de type number et d'id poids.-->
+				<label for="frequenceSportif">Fréquence Sportive</label>
+					<select name="frequenceSportif" id="frequenceSportif" size="1">
+						<option>Plus d'une fois par semaine
+						<option>Une fois par semaine
+						<option>Une fois par mois
+						<option>Une fois par trimestre
+						<option>Moins d'une fois par trimestre
+					</select>
+				<!--Réception de la fréquence sportive dans un input de type select et d'id frequenceSportif.-->
+			</fieldset>
+
+			<fieldset>
+				<legend>Informations de contact</legend>
+				<label for="mail">Email :</label> <input type="mail" name="mail" id="mail" maxlength="40" size="20" placeholder="e-mail" /><br/>
+				<!--Réception de l'e-mail dans un input de type mail et d'id mail.-->
+				<!--Le placeholder permet d'afficher un texte dans le fond de l'espace prévu à la saisie utilisateur.-->
+				<label for="telephone">Téléphone :</label> <input type="number" name="telephone" id="telephone" maxlength="20" /> <br />
+				<!--Réception du téléphone dans un input de type number et d'id telephone.-->
+				
+				<div ID="BoutonsFormulaires">
+					<input class="boutonsFormulaires" type="reset" name="reset" id="reset" value="Reset"/>
+					<!--Réception de l'information d'annulation du contenu du formulaire dans un input de type reset et d'id reset.-->
+					<input class="boutonsFormulaires" type="submit" name="submit" id="submit" value="Valider" onClick=""/>
+					<!--Réception de l'information de soumission du contenu du formulaire dans un input de type submit et d'id submit.-->
+				</div>
+				<!--Boutons pour annuler ou soumettre la saisie.-->
+			</fieldset>
+		</form>
+		
+		<footer id="footer">
+			Contact : r.schlotter@ludus-académie.com<br/>
+			Téléphone : +33624202366
+		</footer>	
+	</BODY>
+</HTML>

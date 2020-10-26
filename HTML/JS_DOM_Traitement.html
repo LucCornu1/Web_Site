@@ -1,0 +1,88 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head name="head">
+		<title>
+			DOM - Web
+		</title>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/Form.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="">
+		<script type="text/javascript" src="../JS/JS_DOM_Formulaire.JS">
+			
+		</script>
+	</head>
+
+	<body id='body'>
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1 id="middle">Mega Formulaire</h1>
+
+		<div class="box" id="container0">
+		<script type="text/javascript">
+			//alert(findGetParameter("nom"))
+
+			function findGetParameter(parameterName)
+			{
+				let result = null,
+				tmp = [];
+				location.search.substr(1).split("&").forEach(function (item)
+				{
+					tmp = item.split("=");
+					if (tmp[0] === parameterName)
+					{ 
+						result = decodeURIComponent(tmp[1]);
+					}
+				});
+				return result;
+			}
+
+			function affiche()
+			{
+				let tab = ["nom", "prenom", "ddn", "genre", "lvlAnglais", "mail1", "mail2", "diplomes", "phone"];
+				let para;
+				let node;
+
+				let box = document.getElementById("container0");
+
+				for(let i = 0; i < tab.length; i++)
+				{
+					para = document.createElement("p");
+					node = document.createTextNode(tab[i]+" : ");
+					addAttribute(para, "class", "styled_inline");
+					addElementChild(node, para);
+					addElementChild(para, box);
+
+					console.log(para);
+
+					para = document.createElement("p");
+					node = document.createTextNode(findGetParameter(tab[i]));
+					addAttribute(para, "class", "styled_inline");
+					addElementChild(node, para);
+					addElementChild(para, box);
+
+					console.log(para);
+
+					createBreakline(box, 1);
+				}
+			}
+
+			affiche();
+		</script>
+		</div>
+
+		<footer id='footer'>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

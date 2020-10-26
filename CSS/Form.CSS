@@ -34,11 +34,15 @@ fieldset{
 	margin-left: 25%;
 }
 
+.styled_inline{
+	display: inline;
+}
+
 .box{
 	border: solid;
 	background-color: #EA83F9;
 	width: 100%;
-	height: 300px;
+	min-height: 50px;
 }
 
 .progCheckbox{

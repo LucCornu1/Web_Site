@@ -8,7 +8,7 @@
 		<link rel="icon" href="">
 		<link rel="stylesheet" type="text/css" href="../CSS/Form.CSS">
 		<link rel="shortcut icon" type="image/x-icon" href="">
-		<script type="text/javascript" src="">
+		<script type="text/javascript" src="../JS/JS_DOM_Formulaire.JS">
 			
 		</script>
 	</head>
@@ -24,7 +24,7 @@
 		<!-- téléphone -->
 
 		<div class="form">
-		<form id="form" name="form" action="JS_traitement_formulaire.html" method="get"></form>
+		<form id="form" name="form" action="JS_DOM_Traitement.html" method="get">
 		<!--La méthode get renvoie les informations dans l'url de la page ouverte, l'action possède l'adresse de la page à ouvrir.-->
 
 			<input type=hidden name="hidden" id="hidden" value="Bonjour"/>
@@ -45,184 +45,29 @@
 				<input type="radio" name="genre" id="genre1" value="Femme"/>Femme
 				<input type="radio" name="genre" id="genre2" value="Autre"/>Autre<br>
 				<!--Réception du genre dans un input de type radio et d'id genre.-->
+
 				<script type="text/javascript">
-					function generateCheckbox()
-					{
-						let progArray = ["C", "C++", "JS", "PHP", "Python", "C#", "Pascal", "GDScript"];
+					let infos = document.getElementById("Infos");
 
-						let box = document.createElement("div");
-						box.setAttribute("class", "box");
-						box.setAttribute("id", "container0");
+					let progArray = ["C", "Cpp", "JS", "PHP", "Python", "C#", "Pascal", "GDScript"];
+					createCheckbox(progArray);
 
-						document.getElementById("Infos").appendChild(box);
-
-						let input;
-						let label;
-						let node;
-
-						for(let i = 0; i < progArray.length; i++)
-						{
-							label = document.createElement("label");
-							label.setAttribute("for", progArray[i]);
-							node = document.createTextNode(progArray[i]);
-
-							label.appendChild(node);
-
-							box.appendChild(label);
-
-							input = document.createElement("input");
-							input.setAttribute("type", "checkbox");
-							input.setAttribute("name", "check-prog");
-							input.setAttribute("value", progArray[i]);
-							input.setAttribute("class", "progCheckbox");
-							if(i==0)
-							{
-								input.setAttribute("checked", "checked");
-							}
-							box.appendChild(input);
-						}
-					}
-
-					generateCheckbox();
-
-
-					function curseurLangue()
-					{
-						let input = document.createElement("input");
-						input.setAttribute("type", "range");
-						input.setAttribute("value", "0");
-						input.setAttribute("max", "5");
-						input.setAttribute("min", "0");
-						input.setAttribute("step", "1");
-						input.setAttribute("onchange", "edit(this)");
-
-						document.getElementById("Infos").appendChild(input);
-
-						let para = document.createElement("p");
-						para.setAttribute("id", "p1");
-						let node = document.createTextNode("A2");
-
-						para.appendChild(node);
-
-						document.getElementById("Infos").appendChild(para);
-					}
+					createBreakline(infos, 1);
 
 					curseurLangue();
 
-					function edit(X)
-					{
-						let str = X.value;
-						if(str == 0)
-						{
-							document.getElementById("p1").innerHTML = "A2";
-						}else if(str == 1){
-							document.getElementById("p1").innerHTML = "A1";
-						}else if(str == 2){
-							document.getElementById("p1").innerHTML = "B2";
-						}else if(str == 3){
-							document.getElementById("p1").innerHTML = "B1";
-						}else if(str == 4){
-							document.getElementById("p1").innerHTML = "C2";
-						}else if(str == 5){
-							document.getElementById("p1").innerHTML = "C1";
-						}
-					}
+					createBreakline(infos, 1);
 
-					function mail()
-					{
-						let label = document.createElement("label");
-						node = document.createTextNode("Mail 1 : ");
+					createMailInput();
 
-						label.appendChild(node);
+					createBreakline(infos, 1);
 
-						document.getElementById("Infos").appendChild(label);
+					let diplomeArray = ["Rien", "Brevet", "Bac", "Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5"];
+					createListeBox(diplomeArray, "diplomes", "Diplômes : ");
 
-						let mail1 = document.createElement("input");
-						mail1.setAttribute("type", "mail");
-						mail1.setAttribute("required", "required");
-						mail1.setAttribute("id", "mail1");
+					createBreakline(infos, 1);
 
-						document.getElementById("Infos").appendChild(mail1);
-
-						label = document.createElement("label");
-						node = document.createTextNode("Mail 2 : ");
-
-						label.appendChild(node);
-
-						document.getElementById("Infos").appendChild(label);
-
-						let mail2 = document.createElement("input");
-						mail2.setAttribute("type", "mail");
-						mail2.setAttribute("required", "required");
-						mail2.setAttribute("id", "mail2");
-
-						document.getElementById("Infos").appendChild(mail2);
-
-						label = document.createElement("label");
-						node = document.createTextNode("Same ? ");
-
-						label.appendChild(node);
-
-						document.getElementById("Infos").appendChild(label);
-
-						let radio = document.createElement("input");
-						radio.setAttribute("type", "checkbox");
-						radio.setAttribute("onclick", "sameMail()");
-
-						document.getElementById("Infos").appendChild(radio);
-					}
-
-					mail();
-
-					function sameMail()
-					{
-						let mail1 = document.getElementById("mail1");
-						let mail2 = document.getElementById("mail2");
-
-						if(mail1.value != mail2.value)
-						{
-							mail2.value = mail1.value;
-						}else{
-							mail2.value = "";
-						}
-					}
-
-					document.write("<br><br>");
-
-					function listeBox()
-					{
-						let diplomeArray = ["Rien", "Brevet", "Bac", "Bac+1", "Bac+2", "Bac+3", "Bac+4", "Bac+5"];
-
-						let option;
-
-						let label = document.createElement("label");
-						label.setAttribute("for", "diplomes");
-						let node = document.createTextNode("Diplômes : ");
-
-						label.appendChild(node);
-
-						document.getElementById("Infos").appendChild(label);
-
-						let select = document.createElement("select");
-						select.setAttribute("name", "diplomes");
-
-						document.getElementById("Infos").appendChild(select);
-
-						for(let i = 0; i < diplomeArray.length; i++)
-						{
-							option = document.createElement("option");
-							option.setAttribute("value", diplomeArray[i]);
-							console.log(option.value);
-
-							node = document.createTextNode(diplomeArray[i]);
-
-							option.appendChild(node);
-
-							select.appendChild(option);
-						}
-					}
-
-					listeBox();
+					createPhone();
 				</script>
 				<br>
 			</fieldset>
@@ -231,27 +76,11 @@
 			<br>
 
 			<fieldset>
-				<legend>Autres</legend>
-				<!--Réception du poids dans un input de type number et d'id poids.-->
-				<label for="frequenceSportif">Fréquence Sportive</label>
-					<select name="frequenceSportif" id="frequenceSportif" size="1">
-						<option>Plus d'une fois par semaine
-						<option>Une fois par semaine
-						<option>Une fois par mois
-						<option>Une fois par trimestre
-						<option>Moins d'une fois par trimestre
-					</select>
-				<!--Réception de la fréquence sportive dans un input de type select et d'id frequenceSportif.-->
-			</fieldset>
-
-			<br>
-
-			<fieldset>
 				<legend>Fin de formulaire</legend>
 				<div id="BoutonsFormulaires">
 					<label for="reset">Reset : </label><input class="boutonsFormulaires" type="reset" name="reset" id="reset" value="Reset"/><br>
 					<!--Réception de l'information d'annulation du contenu du formulaire dans un input de type reset et d'id reset.-->
-					<label for="submit">Valider : </label><input class="boutonsFormulaires" type="submit" name="submit" id="submit" value="Valider" onClick=""/><br>
+					<label for="submit">Valider : </label><input class="boutonsFormulaires" type="submit" name="submit" id="submit" value="Valider" onClick="changePage()"/><br>
 					<!--Réception de l'information de soumission du contenu du formulaire dans un input de type submit et d'id submit. A envoyé dans une page traitement formulaire.-->
 				</div>
 				<!--Boutons pour annuler ou soumettre la saisie.-->
