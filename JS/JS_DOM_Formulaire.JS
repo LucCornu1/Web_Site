@@ -22,15 +22,41 @@ function initInput(type, name, id)
 	return input;
 }
 
+function setRange(input, min, max, step, value)
+{
+	if(input.type != "range")
+	{
+		return 0;
+	}
+	
+	input.setAttribute("min", min);
+	input.setAttribute("max", max);
+	input.setAttribute("step", step);
+	input.setAttribute("value", value);
+}
+
 function initDiv(class_Div, id_Div)
 //BUT : Créer un div
 //ENTREE : Un nom de classe et un nom d'id
 //SORTIE : Le div créé
 {
 	let div = document.createElement("div");
-	addAttribute(div, "class", class_Div);
-	addAttribute(div, "id", id_Div);
+	div.setAttribute("class", class_Div);
+	div.setAttribute("id", id_Div);
 
+	return div;
+}
+
+function quickDiv(class_Div, id_Div, parent)
+//BUT : Créer rapidement un div
+//ENTREE : Un nom de classe, un nom d'id et un parent
+//SORTIE : / (Créer directement le div dans la page)
+{
+	let div = document.createElement("div");
+	div.setAttribute("class", class_Div);
+	div.setAttribute("id", id_Div);
+
+	parent.appendChild(div);
 	return div;
 }
 

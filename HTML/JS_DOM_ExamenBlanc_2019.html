@@ -1,0 +1,145 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/ExamenBlanc_2019.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="">
+		<script type="text/javascript" src="../JS/JS_DOM_Formulaire.JS">
+			
+		</script>
+		<title>
+			PHP - web
+		</title>
+	</head>
+
+	<body id="body">
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1>Examen Blanc - 2019</h1>
+
+		<script type="text/javascript">
+			let body = document.getElementById("body");
+			let div = quickDiv("box", "container0", body);
+
+			function createTable(row, col, tab1)
+			{
+				let table = document.createElement("table");
+				div.appendChild(table);
+
+				let tr;
+				let td;
+
+				let node;
+
+				for(let i = 0; i < row; i++)
+				{
+					tr = document.createElement("tr");
+					tr.setAttribute("id", "tr"+i);
+					table.appendChild(tr);
+
+					for(let j = 0; j < col; j++)
+					{
+						td = document.createElement("td");
+						td.appendChild(tab[i][j]);
+						
+						td.setAttribute("id", "td"+i+"-"+j);
+						tr.appendChild(td);
+					}
+				}
+			}
+
+			function rowSpanTable(row, col, size)
+			{
+				let tr;
+				let td;
+
+				tr = document.getElementById("tr"+row);
+				td = document.createElement("td");
+				td.setAttribute("rowspan", size);
+				td.setAttribute("class", "long");
+				td.setAttribute("id", "td"+row+"-"+col);
+
+				let div = initDiv("exercice", "container1");
+				let node = document.createTextNode("Zone de test");
+				div.appendChild(node);
+				td.appendChild(div);
+
+				tr.appendChild(td);
+			}
+
+			function edit()
+			{
+				let r1 = document.getElementById("rgb").value;
+				let r2 = document.getElementById("padding").value;
+				let r3 = document.getElementById("height").value;
+				let r4 = document.getElementById("width").value;
+				let r5 = document.getElementById("arrondi").value;
+				let r6 = document.getElementById("rotation").value;
+
+				let zone = document.getElementById("container1").style;
+
+				zone.backgroundColor = "rgb("+r1+","+r1+","+r1+")";
+				zone.padding = r2+"px";
+				zone.height = r3+"px";
+				zone.width = r4+"px";
+				zone.borderRadius = r5+"px";
+				zone.transform = "rotate("+r6+"deg)";
+			}
+
+			//A mettre dans une boucle
+			let range1 = initInput("range", "rgb", "rgb");
+			setRange(range1, "0", "255", "1", "0");
+			range1.setAttribute("onchange", "edit()");
+			node1 = document.createTextNode("couleur de fond (rgb)");
+
+			let range2 = initInput("range", "padding", "padding");
+			setRange(range2, "1", "30", "1", "10");
+			range2.setAttribute("onchange", "edit()");
+			node2 = document.createTextNode("padding");
+
+			let range3 = initInput("range", "height", "height");
+			setRange(range3, "1", "200", "1", "20");
+			range3.setAttribute("onchange", "edit()");
+			node3 = document.createTextNode("height");
+
+			let range4 = initInput("range", "width", "width");
+			setRange(range4, "1", "200", "1", "20");
+			range4.setAttribute("onchange", "edit()");
+			node4 = document.createTextNode("width");
+
+			let range5 = initInput("range", "arrondi", "arrondi");
+			setRange(range5, "0", "30", "1", "0");
+			range5.setAttribute("onchange", "edit()");
+			node5 = document.createTextNode("arrondi");
+
+			let range6 = initInput("range", "rotation", "rotation");
+			setRange(range6, "0", "180", "1", "0");
+			range6.setAttribute("onchange", "edit()");
+			node6 = document.createTextNode("rotation");
+
+			let tab = [[node1, range1], [node2, range2], [node3, range3], [node4, range4], [node5, range5], [node6, range6]];
+
+			createTable(6, 2, tab);
+
+			rowSpanTable(0, 3, 6);
+
+			edit();
+		</script>
+
+		<br>
+		<footer>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>
