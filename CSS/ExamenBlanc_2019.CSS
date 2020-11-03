@@ -6,7 +6,8 @@
 		url("./Police/Aaargh.svg") format("svg");
 }*/
 h1{color: white; font-size: 305%; font-family: "MaPolice", Calibri, Serif; text-decoration: underline;}
-h2{color: white;font-size: 215%; font-family: "MaPolice", Calibri, Serif; text-decoration: underline;}
+h2{color: white; font-size: 215%; font-family: "MaPolice", Calibri, Serif; text-decoration: underline;}
+h3{color: white; font-size: 145%; font-family: "MaPolice", Calibri, Serif;}
 
 body{
 	background-color: #42507D;
@@ -36,13 +37,43 @@ table{
 
 td, th{
 	border: thick solid #42507D;
-	background-color: #EE96FB;
+	background-color: #E3680F;
 	width: 100px;
 	text-align: center;
 }
 
 .center{
 	text-align: center;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+
+a:link {
+  color: #E3680F;
+}
+
+a:visited {
+  color: #E3680F;
+}
+
+a:focus {
+  border-bottom: 1px solid;
+  background: #E3680F;
+}
+
+a:hover {
+  border-bottom: none;     
+  background: #E3680F;
+  color: white;
+}
+
+a:active {
+  background: #42507D;
+  color: white;
 }
 
 #middle{
@@ -64,7 +95,7 @@ td, th{
 
 .box{
 	border: solid;
-	background-color: #EA83F9;
+	background-color: #E3560F;
 	width: 100%;
 	min-height: 50px;
 }
