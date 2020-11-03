@@ -38,6 +38,11 @@ td, th{
 	border: thick solid #42507D;
 	background-color: #EE96FB;
 	width: 100px;
+	text-align: center;
+}
+
+.center{
+	text-align: center;
 }
 
 #middle{

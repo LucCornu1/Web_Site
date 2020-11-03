@@ -1,0 +1,125 @@
+<!DOCTYPE html> <!-- Ceci est un modèle de base, penser à faire une copie avant de faire des modifications -->
+<html>
+	<head name="head">
+		<title>
+			DOM - Web
+		</title>
+		<meta charset="utf-8"/>
+		<link rel="icon" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/Form.CSS">
+		<link rel="shortcut icon" type="image/x-icon" href="">
+		<script type="text/javascript" src="../JS/JS_DOM_Formulaire.JS">
+			
+		</script>
+	</head>
+
+	<body id='body'>
+		<header>
+			<!-- Insérer un logo, informations principales -->
+		</header>
+
+		<h1 id="middle">Mega Formulaire</h1>
+
+		<!-- email1, email2 ; bouton -> met l'email1 and l'email2 -->
+		<!-- téléphone -->
+
+		<div class="form">
+		<form id="form" name="form" action="JS_DOM_Traitement.html" method="get">
+		<!--La méthode get renvoie les informations dans l'url de la page ouverte, l'action possède l'adresse de la page à ouvrir.-->
+
+			<input type=hidden name="hidden" id="hidden" value="Bonjour"/>
+			<!--Un input caché contenant la valeur "Bonjour" pour pouvoir commencer à 1 lors de la récupération des informations..-->
+
+			<fieldset id="Infos">
+				<legend>Informations Générales</legend>
+				<!--Réception du Prénom dans un input de type text et d'id prenom.-->
+				<label for="ddn">Date de naissance :</label> <input type="date" name="ddn" id="ddn"/><br>
+
+				<script type="text/javascript">
+					let infos = document.getElementById("Infos");
+
+					function createBreakline(parent, rep)
+					{
+						for(let i = 0; i < rep; i++)
+						{
+							let br = document.createElement("br");
+							parent.appendChild(br);
+						}
+					}
+
+					let label = initLabel("nom", "Nom :");
+					infos.appendChild(label);
+
+					let nom = initInput("text", "nom", "nom");
+					nom.setAttribute("maxlength", "20");
+					nom.setAttribute("size", "20");
+					infos.appendChild(nom);
+
+					createBreakline(infos, 1);
+
+					label = initLabel("prenom", "Prenom :");
+					infos.appendChild(label);
+
+					let prenom = initInput("text", "prenom", "prenom");
+					prenom.setAttribute("maxlength", "20");
+					prenom.setAttribute("size", "20");
+					infos.appendChild(prenom);
+
+					createBreakline(infos, 1);
+
+					createSoloMail();
+
+					label = initLabel("ville", "Ville :");
+					infos.appendChild(label);
+
+					let ville = initInput("text", "ville", "ville");
+					prenom.setAttribute("maxlength", "20");
+					prenom.setAttribute("size", "20");
+					infos.appendChild(ville);
+
+					createBreakline(infos, 1);
+
+					label = initLabel("ddn", "Date de naissance :");
+					infos.appendChild(label);
+
+					let ddn = initInput("text", "ddn", "ddn");
+					prenom.setAttribute("maxlength", "20");
+					prenom.setAttribute("size", "20");
+					infos.appendChild(ddn);
+
+					createBreakline(infos, 1);
+				</script>
+				<br>
+			</fieldset>
+			<!--Le fieldset permet de regrouper divers éléments du formulaire et d'y associer une légende.-->
+
+			<br>
+
+			<fieldset>
+				<legend>Fin de formulaire</legend>
+				<div id="BoutonsFormulaires">
+					<label for="reset">Reset : </label><input class="boutonsFormulaires" type="reset" name="reset" id="reset" value="Reset"/><br>
+					<!--Réception de l'information d'annulation du contenu du formulaire dans un input de type reset et d'id reset.-->
+					<label for="submit">Valider : </label><input class="boutonsFormulaires" type="submit" name="submit" id="submit" value="Valider" onClick="changePage()"/><br>
+					<!--Réception de l'information de soumission du contenu du formulaire dans un input de type submit et d'id submit. A envoyé dans une page traitement formulaire.-->
+				</div>
+				<!--Boutons pour annuler ou soumettre la saisie.-->
+			</fieldset>
+		</form>
+		</div>
+
+		<br>
+
+		<footer id='footer'>
+			<em> Mentions légales, Copyright, Contact et liens </em>
+			<ul>
+				<li>
+					CORNU Luc
+				</li>
+				<li>
+					<a href="mailto:luc.cornu@hotmail.fr" target="blank" title="Pour m'envoyer un mail"> luc.cornu@hotmail.fr </a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+</html>

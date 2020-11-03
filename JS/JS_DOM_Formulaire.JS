@@ -145,6 +145,20 @@ function curseurLangue()
 	addElementChild(para, box);
 }
 
+function createSoloMail()
+{
+	let label = initLabel("mail1", "Mail 1 : ");
+	addElementChild(label, infos);
+
+	let mail1 = initInput("mail", "mail1", "mail1");
+	addAttribute(mail1, "required", "required");
+	//console.log(mail1);
+
+	addElementChild(mail1, infos);
+
+	createBreakline(infos, 1);
+}
+
 function createMailInput()
 //BUT : Créer deux champs mails et un bouton pour mettre le deuxième champ égal au premier
 //ENTREE : /
@@ -272,8 +286,8 @@ function createPhone()
 }
 
 function changePage()
-					{
-						let form = document.getElementById("form");
+{
+	let form = document.getElementById("form");
 
-						form.submit;
-					}
+	form.submit;
+}

@@ -30,6 +30,17 @@ fieldset{
 	margin: auto;
 }
 
+table{
+	border-collapse: collapse;
+}
+
+td, th{
+	border: thick solid #42507D;
+	background-color: #EE96FB;
+	width: 100px;
+	text-align: center;
+}
+
 #middle{
 	margin-left: 25%;
 }
